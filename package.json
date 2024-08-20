@@ -1,0 +1,12 @@
+{
+  "name": "intro-to-node",
+  "version": "1.0.0",
+  "description": "Super cool dice rolling terminal app.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "Kim",
+  "license": "ISC"
+}
