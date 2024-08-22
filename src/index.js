@@ -38,6 +38,9 @@ function rollDice(diceSize = 20) {
 
 const prompt = require("prompt-sync")({signit: true});
 
+
+let diceRollHistory = [];
+
 let userWantsToRepeatApp = true;
 
 do {
@@ -54,6 +57,13 @@ do {
         if (userInputAsNumber < 1) {
             throw new Error("User enetered an invalid number.");
         }
+
+        diceRollHistory.push(rollDice(userInputAsNumber));
+        console.log(diceRollHistory[diceRollHistory.length - 1]);
+
+        if (diceRollHistory.length > 10) {
+            diceRollHistory.shift();
+        }
     
         console.log(rollDice(userInputAsNumber));
 
@@ -61,10 +71,11 @@ do {
         console.log("Error occured");
         console.error(error.message);
     } finally {
-        let doesUserWantToRepeat = prompt("Roll another dice? Y/N ");
+        let doesUserWantToRepeat = prompt("Roll another dice? Enter 'N' to stop, or anything else to play again: ");
         if (doesUserWantToRepeat[0].toLocaleLowerCase() == "n") {
             userWantsToRepeatApp = false;
         }
     }
 } while (userWantsToRepeatApp);
 
+console.log("Full dice roll history:\n" + diceRollHistory);
